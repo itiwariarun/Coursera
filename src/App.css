@@ -1,0 +1,63 @@
+* {
+  font-family: sans-serif;
+}
+body{
+      overflow: auto;
+
+}
+input,
+button {
+  font-size: 20px;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+button {
+  border: 1px solid gray;
+  background: whitesmoke;
+  margin-right: 5px;
+}
+.clear button:nth-last-child(2),
+.clear button:nth-last-child(1) {
+  background: tomato;
+  color: white;
+  margin-block: 10px;
+  padding: 10px 21.7px;
+}
+.result {
+  background-color: beige;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-block: 10px;
+  text-align: right;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 900;
+  box-sizing: border-box;
+}
+input {
+  border-radius: 8px;
+  text-align: end;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+    display: block;
+  margin-bottom: 20px;
+}
+fieldset {
+    width: 20rem;
+    display: flex;
+  justify-content: center;
+  background: rgba(119, 136, 153, 0.493);
+  align-items: center;
+  border-radius: 12px;
+}
+legend {
+  font-size: 10px;
+  font-weight: 200;
+  background: white;
+  border-radius: 20px;
+
+}
