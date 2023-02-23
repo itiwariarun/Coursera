@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WYSIWYG text editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+   
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+  </head>
+  <body class="flex w-screen h-screen justify-center bg-slate-900 h-screen w-screen">
+    <div class="container m-auto">
+      <h1>WYSIWYG text editor</h1>
+      <p class="lead">
+        A minimal, clean rich text WYSIWYG editor
+      </p>
+      <div id="editor-box">
+        <iframe id="area" class="area h-96 shadow-lg h-[50rem]">
+          <div id="top-bar" class="sty-top"></div>
+          <textarea name="outputarea" id="outputarea" class=""></textarea>
+        </iframe>
+      </div>
+    </div>
+  </body>
+ 
+</html>

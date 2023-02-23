@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="center">
+        <div id="captchaBackground">
+            <div id="captcha"></div>            
+            <input type="text" id="answer" placeholder="Enter Answer">
+
+            <div class="button">
+            <button id="submitButton" onclick="generateCaptcha()">Refresh</button>
+            <button id="refreshButton" onclick="checkCaptcha()">Submit</button>
+        </div>
+       </div>
+            <span id="output"></span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
