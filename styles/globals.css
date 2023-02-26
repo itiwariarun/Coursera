@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main
+{
+  @apply bg-[#185656] rounded-lg opacity-100 bg-blend-multiply  h-[100vh] flex  w-[100vw];
+background-image: radial-gradient(circle at center center, #99cad5, #185656), repeating-radial-gradient(circle at center center, #99cad5, #99cad5, 28px, transparent 56px, transparent 28px);
+}
+
+form{
+    @apply flex flex-col justify-center h-full m-auto
+}
+section{
+  @apply  flex flex-col w-1/2 m-auto shadow-xl backdrop-blur-xl py-10 h-[40rem] rounded-lg bg-gradient-to-tl from-slate-900/40 to-cyan-700/30
+}
+h1{
+    @apply font-bold text-7xl text-cyan-100 font-serif text-center py-6
+}
+label{
+    @apply text-sm font-semibold text-slate-100
+}
+input{
+    @apply rounded-lg py-2 px-4 w-96 mb-10 mt-1 placeholder:font-thin placeholder:text-cyan-900 placeholder:text-xs  font-bold text-teal-800
+}
+.login-button{
+    @apply disabled:text-slate-300 disabled:bg-slate-500 bg-cyan-700 hover:bg-teal-900 hover:border-2 hover:border-cyan-300 mx-auto w-1/2 rounded-lg py-3 text-cyan-50 font-bold text-xl
+}
+
+body{
+   @apply bg-gray-900 w-[100vw]
+}
+
+
+.button{
+    @apply bg-red-800 w-40 duration-700 hover:bg-red-900 py-2 rounded-lg font-bold text-red-50 m-auto
+}
+
+
+.captcha-generate{
+    @apply font-semibold
+}
+.captcha-button,.login-button,.captcha-button-first{
+    @apply hover:scale-90
+}
+
+ .captcha-button-first{
+    @apply bg-cyan-50 hover:bg-cyan-200 duration-700  py-2 mb-5 px-4 rounded-lg font-bold text-slate-700
+}
+.captcha-text{
+    @apply  text-center px-6 py-1.5 rounded-lg font-extrabold text-xl bg-teal-100  text-slate-800 font-serif tracking-wider;
+    user-select: none;
+}
+/* Tooltip container */
+.tooltip {
+    @apply relative flex duration-700 items-center justify-center border-b  border-black
+
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    @apply absolute z-50 flex invisible px-3 py-1 text-sm font-normal text-center duration-700 rounded-lg -top-6 text-teal-50 bg-teal-900/80 ;
+
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+@apply visible
+}
