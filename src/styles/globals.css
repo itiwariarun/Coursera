@@ -1,107 +1,241 @@
-:root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
-
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html,
 body {
+  background: #0f2927;
+}
+/* main body css */
+.main {
   max-width: 100vw;
-  overflow-x: hidden;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
+/* slider container for card */
+.container {
+  left: calc(50% - 300px);
+  width: 90%;
+  margin: auto;
+  display: flex;
+  overflow: auto;
+  padding-inline: 60px;
+  box-sizing: border-box;
+  border-radius: 30%  30% 0 0;
+}
+/* css for cards */
+.card {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  margin-block: 100px 50px;
+  min-height: 400px;
+  min-width: 300px;
+  border-radius: 10px;
+  border-radius: 20px;
+  background: rgb(3, 57, 62);
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    90deg,
+    rgba(3, 57, 62, 1) 29%,
+    rgba(15, 154, 182, 1) 100%
+  );
+  transition: all 0.4s ease-out;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* css for card overlaping and its sliding animation */
+.card:not(:first-child) {
+  margin-left: -180px;
+  position: relative;
+  right: 0;
+  transition: all 0.4s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* card hover effect and transition */
+.card:hover {
+  transform: translateY(-20px) rotate(5deg);
+  transition: all 0.4s ease-out;
+  border-radius: 36px;
+  border: none;
+  background: #083f3b;
+  box-shadow: inset 33px 33px 20px #06302d, inset -33px -33px 10px #0a4e49;
+}
+/* other cards shifting on hover animation */
+.card:hover ~ .card {
+  position: relative;
+  right: -190px;
+  transition: all 0.4s ease-in-out;
+}
+/* css for card header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 10px;
+}
+/* title of the card and card number with date and time */
+.title {
+  display: flex;
+  margin-inline: 10px;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+  font-weight: 300;
+}
+.title p {
+  margin-top: -10px;
+}
+/* css for bar */
+
+.bar {
+  height: 5px;
+  margin-inline: auto;
+  width: 87%;
+}
+/* when card is not hovered */
+.emptybar {
+  background-color: #5b5c5e;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+/* when card is hovered colored bar appear */
+.filledbar {
+  border-radius: 30px;
+  z-index: 3;
+  margin-top: -4.5px;
+  width: 0px;
+  height: 100%;
+  background: rgb(0, 154, 217);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 154, 217, 1) 0%,
+    rgba(217, 147, 0, 1) 65%,
+    rgba(255, 186, 0, 1) 100%
+  );
+  transition: all 0.4s ease-out;
+}
+
+.card:hover .filledbar {
+  width: 100%;
+  transition: all 0.4s ease-out;
+}
+.card:hover .emptybar {
+  display: none;
+}
+/* css for delete button */
+.delete {
+  display: flex;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center;
+  padding: 8px;
+  height: 30px;
+  border-radius: 100%;
+}
+.delete:hover {
+  scale: 1.2;
+  transition: all 0.3s ease-in-out;
+}
+/* css for todo inforamtion */
+.info {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  word-wrap: break-word;
+  font-weight: 600;
+  color: rgb(173, 175, 175);
+}
+.info p {
+  max-width: 270px;
+  font-size: larger;
+  text-align: center;
+}
+.title p {
+  word-spacing: 5px;
+}
+/* input box and button container */
+.input-outer {
+  min-width: 50%;
+  text-align: center;
+  margin: auto;
+  border-radius: 29px;
+  background: linear-gradient(145deg, #0b1a19, #0d1f1e);
+  box-shadow: 14px 14px 36px #091615, -14px -14px 36px #0f2423;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* add button css */
+.input-outer button {
+  width: 80%;
+  height: 40px;
+  transition: all 0.4s ease 0s;
+  margin-inline: 15px;
+  font-weight: 800;
+  color: #0a4e49;
+  font-size: large;
+  margin-top: 30px;
+  border: none;
+  border-radius: 10px;
+}
+/* add button hover effect */
+.input-outer button:hover {
+  scale: 1.2;
+  box-shadow: 0px 15px 15px #335456;
+}
+/* input field css */
+.inputGroup {
+  font-family: "Segoe UI", sans-serif;
+  margin: 1em 0 1em 0;
+  max-width: 100%;
+  position: relative;
+}
+/* input box css */
+.inputGroup input {
+  width: 80%;
+  font-size: 100%;
+  padding: 1.3em;
+  color: white;
+  outline: none;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
+  border-radius: 20px;
+  max-width: 100%;
+}
+/* input box css for label */
+.inputGroup label {
+  font-size: 0%;
+  position: absolute;
+  left: 0;
+  transition: all 0.4s ease;
+  color: rgb(100, 100, 100);
+}
+/* input box focus css and label effect */
+.inputGroup :is(input:focus, input:valid) ~ label {
+  transform: translateY(-50%) translateX(50%) scale(0.9);
+  font-size: 100%;
+  padding-block:0.3em ;
+  padding-inline: 4.4em;
+  border-radius: 40px;
+  background-color: #e8e8e8;
+}
+
+.inputGroup :is(input:focus, input:valid) {
+  border-color: rgb(150, 150, 200);
+}
+
+/* custom scrollbar css */
+div::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 100px;
+}
+
+div::-webkit-scrollbar {
+  border-radius: 100px;
+  background-color: #f5f5f5;
+}
+
+div::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: #063f48;
+  border: 6px solid rgba(0, 0, 0, 0.597);
 }
