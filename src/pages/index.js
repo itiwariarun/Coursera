@@ -1,250 +1,105 @@
-import { useEffect, useState } from "react";
-
-const menu = [
+import { use, useState } from "react";
+import MultilevelSideNav from "@/component/MultilevelSidenav";
+const menuData = [
   {
-    name: "Profile",
-    icon: "account_circle",
+    name: "Home",
+    url: "/",
   },
   {
-    name: "Settings",
-    icon: "settings",
-    menu: [
+    name: "Menu 1",
+    children: [
       {
-        name: "Appearacne",
-        icon: "dark_mode",
+        name: "Menu 1.1",
+        url: "/page/menu-1-1",
       },
     ],
   },
   {
-    name: "Settings",
-    icon: "settings",
-    menu: [
+    name: "Menu 2",
+    url: "/page/menu-2",
+  },
+  {
+    name: "Menu 3",
+    children: [
       {
-        name: "Appearacne",
-        icon: "dark_mode",
+        name: "Menu 3.1",
+        url: "/page/menu-3-1",
       },
       {
-        name: "Appearacne",
-        icon: "dark_mode",
+        name: "Menu 3.2",
+        url: "/page/menu-3-2",
       },
       {
-        name: "Appearacne",
-        icon: "dark_mode",
+        name: "Menu 3.3",
+        children: [
+          {
+            name: "Menu 3.3.1",
+            url: "/page/menu-3-3-1",
+          },
+        ],
       },
     ],
   },
   {
-    name: "Settings",
-    icon: "settings",
-    menu: [
+    name: "Menu 4",
+    children: [
       {
-        name: "Appearacne",
-        icon: "dark_mode",
+        name: "Menu 4.1",
+        url: "/page/menu-4-1",
       },
       {
-        name: "Appearacne",
-        icon: "dark_mode",
+        name: "Menu 4.2",
+        url: "/page/menu-4-2",
       },
       {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-    ],
-  },
-  {
-    name: "Settings",
-    icon: "settings",
-    menu: [
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-    ],
-  },
-  {
-    name: "Settings",
-    icon: "settings",
-    menu: [
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-    ],
-  },
-  {
-    name: "Settings",
-    icon: "settings",
-    menu: [
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-    ],
-  },
-  {
-    name: "Settings",
-    icon: "settings",
-    menu: [
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-    ],
-  },
-  {
-    name: "Settings",
-    icon: "settings",
-    menu: [
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-    ],
-  },
-  {
-    name: "Settings",
-    icon: "settings",
-    menu: [
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-    ],
-  },
-  {
-    name: "Settings",
-    icon: "settings",
-    menu: [
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
-      },
-      {
-        name: "Appearacne",
-        icon: "dark_mode",
+        name: "Menu 4.3",
+        children: [
+          {
+            name: "Menu 4.3.1",
+            url: "/page/menu-4-3-1",
+          },
+          {
+            name: "Menu 4.3.2",
+            url: "/page/menu-4-3-2",
+          },
+          {
+            name: "Menu 4.3.3",
+            children: [
+              {
+                name: "Menu 4.3.3.1",
+                children: [
+                  {
+                    name: "Menu 4.3.3.1.1",
+                    url: "/page/menu-4-3-3-1-1",
+                  },
+                ],
+              },
+              {
+                name: "Menu 4.3.3.2",
+                url: "/page/menu-4-3-3-2",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
 ];
-export default function Home() {
-  const [isOpen, setOpen] = useState();
-  const [menuHeight, setMenuHeight] = useState();
-  const [activeMenu, setActiveMenu] = useState();
-  const toggleMenuOpen = ({ menu, name }) => {
-    if (!menu) return;
-    setActiveMenu(name);
-    setOpen(!isOpen);
+const Home = () => {
+  const [sideNavState, setSideNavState] = useState(false);
+  const sideNavHandler = () => {
+    setSideNavState(!sideNavState);
   };
-  useEffect(() => {
-    const menuElement = document.getElementById(
-      isOpen ? "submenu" : "mainmenu"
-    );
-    setMenuHeight(screen);
-  }, [isOpen]);
   return (
-    <Menu
-      menuHeight={menuHeight}
-      isOpen={isOpen}
-      activeMenu={activeMenu}
-      toggleMenuOpen={toggleMenuOpen}
-    />
+    <>
+      <button onClick={sideNavHandler}>X</button>
+      <MultilevelSideNav
+        sideNavState={sideNavState}
+        sideNavHandler={sideNavHandler}
+        data={menuData}
+      />
+      <h1>This is my Home Page</h1>
+    </>
   );
-}
-
-const MenuButton = ({ menuItem, onClick, isCloseButton }) => (
-  <button className="menu-button" onClick={onClick}>
-    <span
-      className="menu-button-icon material-icons"
-      style={{
-        background: isCloseButton && "transparent",
-        fontSize: isCloseButton && "1.5rem",
-      }}
-    >
-      {menuItem.icon}
-    </span>
-    <span className="menu-button-text">{menuItem.name}</span>
-    {menuItem.menu && !isCloseButton && (
-      <span className="material-icons">chevron_right</span>
-    )}
-  </button>
-);
-const Menu = ({ menuHeight, isOpen, activeMenu, toggleMenuOpen }) => (
-  <div className="wrapper" style={{ height: `${menuHeight}` }}>
-    <div className={`menu-main ${isOpen ? "open" : ""}`} id="mainmenu">
-      {menu.map((menuItem) => (
-        <>
-          <MenuButton
-            menuItem={menuItem}
-            onClick={() => toggleMenuOpen(menuItem)}
-          />
-          {menuItem.menu && activeMenu === menuItem.name && (
-            <div className="menu-sub" id="submenu">
-              <>
-                <MenuButton
-                  isCloseButton
-                  menuItem={{ ...menuItem, icon: "arrow_back" }}
-                  onClick={() => toggleMenuOpen(menuItem)}
-                />
-                {menuItem.menu.map((subMenuItem, index) => (
-                  <MenuButton key={index} menuItem={subMenuItem} />
-                ))}
-              </>
-            </div>
-          )}
-        </>
-      ))}
-    </div>
-  </div>
-);
+};
+export default Home;
